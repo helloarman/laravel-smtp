@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Configuration Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Email Configuration Generator for env</h1>
+    <div class="form-container">
+        <div class="form-group">
+            <label for="incomingServer">Incoming Server:</label>
+            <input type="text" id="incomingServer" placeholder="e.g., mail.yourdomain.com">
+        </div>
+        <div class="form-group">
+            <label for="smtpPort">SMTP Port (Outgoing Server):</label>
+            <input type="text" id="smtpPort" placeholder="e.g., 465">
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="e.g., youremail@yourdomain.com">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Your email password">
+        </div>
+        <div class="form-group">
+            <label for="mailFromAddress">MAIL_FROM_ADDRESS:</label>
+            <input type="text" id="mailFromAddress" placeholder="e.g., youremail@yourdomain.com">
+        </div>
+        <button onclick="generateConfig()">Generate env Configuration</button>
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function generateConfig() {
+            const incomingServer = document.getElementById('incomingServer').value.trim();
+            const smtpPort = document.getElementById('smtpPort').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const mailFromAddress = document.getElementById('mailFromAddress').value.trim();
+
+            const output = `MAIL_MAILER=smtp
+MAIL_HOST="${incomingServer}"
+MAIL_PORT="${smtpPort}"
+MAIL_USERNAME="${username}"
+MAIL_PASSWORD="${password}"
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS="${mailFromAddress}"
+MAIL_FROM_NAME="\${APP_NAME}"`;
+
+            document.getElementById('output').textContent = output;
+        }
+    </script>
+</body>
+
+</html>
