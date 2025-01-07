@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laravel SMTP Email Configuration Generator</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -28,13 +34,54 @@
             <input type="password" id="password" placeholder="Your email password">
         </div>
         <div class="form-group">
-            <label for="mailFromAddress">MAIL_FROM_ADDRESS:</label>
+            <label for="mailFromAddress">Mail From Address :</label>
             <input type="text" id="mailFromAddress" placeholder="e.g., youremail@yourdomain.com">
         </div>
         <button onclick="generateConfig()">Generate env Configuration</button>
         <div class="output" id="output"></div>
     </div>
+    <div class="card mt-5">
+        <div class="card-header">🔗 Details and Steps:</div>
+        <div class="card-body">
+            <p>
+                Using this tool, you can generate the necessary SMTP configuration for your Laravel application to send emails with your domain email.
+            </p>
 
+            <strong>Steps to follow (cPanel):</strong>
+            <ol>
+                <li>
+                    Go to your cPanel and search for <b>"Email Accounts"</b> in the tool search bar.
+                </li>
+                <li>
+                    Click on the <b>"➕ Create"</b> button and create an email account.
+                </li>
+                <li>
+                    Navigate back to the <b>"Email Accounts"</b> page, and click on the <b>"📱 Connect Devices"</b> button.
+                    <br>
+                    From the <b>"Mail Client Manual Settings"</b> section, retrieve the following details:
+                    <i class="text-primary">Incoming Server, SMTP Port (Outgoing Server), Username, Password, and Mail Address</i>.
+                </li>
+                <li>
+                    Fill in all the retrieved information in the form on this page and click the <b>"Generate env Configuration"</b> button.
+                </li>
+                <li>
+                    Copy the generated text displayed below.
+                </li>
+                <li>
+                    Open your <code>.env</code> file in your Laravel project, and paste or replace the text with the generated configuration.
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="mt-3">
+        <p class="text-slate-600 text-center my-10">
+            Made with ❤️ by
+            <a href="https://github.com/helloarman" target="_blank" rel="noopener noreferrer" class="underline">Arman Rahman</a>
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function generateConfig() {
             const incomingServer = document.getElementById('incomingServer').value.trim();
